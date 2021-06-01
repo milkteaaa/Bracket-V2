@@ -703,6 +703,67 @@ function Library:CreateWindow(title, color)
 
                 return SliderTypes
             end
+            
+            function GroupTypes:CreateTextBox(name, text, textvalue, callback)
+                name = name or "Textbox"
+                text = text or ""
+                callback = callback or function(o) print(o) end
+                 -- Textbox Instances
+                local Textbox = Instance.new("TextBox")
+                local UIGradient_17 = Instance.new("UIGradient")
+                local title_16 = Instance.new("TextLabel")
+
+                -- Textbox Properties
+                Textbox.Name = "TextBox"
+                Textbox.Parent = container_2
+                Textbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                Textbox.BorderColor3 = Color3.fromRGB(8, 8, 8)
+                Textbox.Position = UDim2.new(0.0399999991, 0, 0.273542613, 0)
+                Textbox.Size = UDim2.new(0, 234, 0, 20)
+                Textbox.ZIndex = 0
+                Textbox.Font = Enum.Font.SourceSans
+                Textbox.Text = textvalue
+                Textbox.PlaceholderText = text
+                Textbox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
+                Textbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+                Textbox.TextSize = 14.000
+                
+                UIGradient_17.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
+                UIGradient_17.Rotation = 90
+                UIGradient_17.Parent = Button
+                
+                title_16.Name = "title"
+                title_16.Parent = Button
+                title_16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                title_16.BackgroundTransparency = 1.000
+                title_16.Size = UDim2.new(1, 0, 1, 0)
+                title_16.Font = Enum.Font.SourceSans
+                title_16.Text = name
+                title_16.TextColor3 = Color3.fromRGB(255, 255, 255)
+                title_16.TextSize = 15.000
+                title_16.TextStrokeTransparency = 0.000
+
+                -- Button Code
+                Textbox.InputBegan:connect(function(input)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						Textbox:CaptureFocus()
+					end
+				end)
+                Textbox:GetPropertyChangedSignal("Text"):connect(function(x)
+                    textvalue = Textbox.Text
+					return callback(Textbox.Text, false, x)
+				end)
+               Textbox.FocusLost:connect(function()
+                    textvalue = Textbox.Text
+					return callback(Textbox.Text, true)
+				end)
+                UserInputService.InputBegan:connect(function(input)
+					if input.KeyCode == Enum.KeyCode.Escape and Textbox:IsFocused() then
+						Textbox:ReleaseFocus()
+					end
+                        end)
+                end
+                
 
             function GroupTypes:CreateDropdown(name, options, callback)
                 name = name or "Dropdown"
