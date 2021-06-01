@@ -725,7 +725,7 @@ function Library:CreateWindow(title, color)
                 Textbox.Text = textvalue
                 Textbox.PlaceholderText = text
                 Textbox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
-                Textbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+                Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
                 Textbox.TextSize = 14.000
                 
                 UIGradient_17.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
@@ -733,7 +733,7 @@ function Library:CreateWindow(title, color)
                 UIGradient_17.Parent = Button
                 
                 title_16.Name = "title"
-                title_16.Parent = Button
+                title_16.Parent = Textbox
                 title_16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 title_16.BackgroundTransparency = 1.000
                 title_16.Size = UDim2.new(1, 0, 1, 0)
