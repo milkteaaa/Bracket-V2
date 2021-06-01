@@ -711,7 +711,7 @@ function Library:CreateWindow(title, color)
                  -- Textbox Instances
                 local Textbox = Instance.new("TextBox")
                 local UIGradient_17 = Instance.new("UIGradient")
-                local title_16 = Instance.new("TextLabel")
+                local titlex = Instance.new("TextLabel")
 
                 -- Textbox Properties
                 Textbox.Name = "TextBox"
@@ -732,18 +732,20 @@ function Library:CreateWindow(title, color)
                 UIGradient_17.Rotation = 90
                 UIGradient_17.Parent = Button
                 
-                title_16.Name = "title"
-                title_16.Parent = Textbox
-                title_16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                title_16.BackgroundTransparency = 1.000
-                title_16.Size = UDim2.new(1, 0, 1, 0)
-                title_16.Font = Enum.Font.SourceSans
-                title_16.Text = name
-                title_16.TextColor3 = Color3.fromRGB(255, 255, 255)
-                title_16.TextSize = 15.000
-                title_16.TextStrokeTransparency = 0.000
+                titlex.Name = "title"
+                titlex.Parent = Textbox
+                titlex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                titlex.BackgroundTransparency = 1.000
+                titlex.Position = UDim2.new(1.58333337, 0, 0, 0)
+                titlex.Size = UDim2.new(0, 215, 0, 12)
+                titlex.Font = Enum.Font.SourceSans
+                titlex.Text = name
+                titlex.TextColor3 = Color3.fromRGB(255, 255, 255)
+                titlex.TextSize = 15.000
+                titlex.TextStrokeTransparency = 0.000
+                titlex.TextXAlignment = Enum.TextXAlignment.Left
 
-                -- Button Code
+                -- Textbox code
                 Textbox.InputBegan:connect(function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
 						Textbox:CaptureFocus()
