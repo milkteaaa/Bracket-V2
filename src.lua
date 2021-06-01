@@ -757,7 +757,7 @@ function Library:CreateWindow(title, color)
                     textvalue = Textbox.Text
 					return callback(Textbox.Text, true)
 				end)
-                UserInputService.InputBegan:connect(function(input)
+                userinputservice.InputBegan:connect(function(input)
 					if input.KeyCode == Enum.KeyCode.Escape and Textbox:IsFocused() then
 						Textbox:ReleaseFocus()
 					end
