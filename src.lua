@@ -802,7 +802,7 @@ function Library:CreateWindow(title, color)
 					return callback(textbox.Text, false, x)
 				end)
                textbox.FocusLost:connect(function()
-                    textvalue = twxtbox.Text
+                    textvalue = textbox.Text
 					return callback(textbox.Text, true)
 				end)
                 userinputservice.InputBegan:connect(function(input)
