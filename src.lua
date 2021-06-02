@@ -736,15 +736,16 @@ function Library:CreateWindow(title, color)
                 titlex.Parent = Textbox
                 titlex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 titlex.BackgroundTransparency = 1.000
-                titlex.Position = UDim2.new(1.58333337, 0, 0, 0)
-                titlex.Size = UDim2.new(0, 215, 0, 12)
+                titlex.Position =  UDim2.new(0, 10, 0, 51)
+                titlex.Size = UDim2.new(0, 234, 0, 42)
                 titlex.Font = Enum.Font.SourceSans
                 titlex.Text = name
                 titlex.TextColor3 = Color3.fromRGB(255, 255, 255)
                 titlex.TextSize = 15.000
                 titlex.TextStrokeTransparency = 0.000
                 titlex.TextXAlignment = Enum.TextXAlignment.Left
-
+		titlex.TextYAlignment = Enum.TextYAlignment.Top
+				
                 -- Textbox code
                 Textbox.InputBegan:connect(function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -1244,7 +1245,7 @@ function Library:CreateWindow(title, color)
             return GroupTypes
         end
 
-        function TabTypes:CratePlayerList(showbuttons, events)
+        function TabTypes:CreatePlayerList(showbuttons, events)
             showbuttons = showbuttons or false
             events = events or {}
             events.onwhitelist = events.onwhitelist or function() end
