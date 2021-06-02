@@ -736,7 +736,7 @@ function Library:CreateWindow(title, color)
                 titlex.Parent = Textbox
                 titlex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 titlex.BackgroundTransparency = 1.000
-                titlex.Position =  UDim2.new(0, 10, 0, 51)
+                titlex.Position =  UDim2.new(0, 10, 0, 10)
                 titlex.Size = UDim2.new(0, 234, 0, 42)
                 titlex.Font = Enum.Font.SourceSans
                 titlex.Text = name
@@ -1390,7 +1390,7 @@ function Library:CreateWindow(title, color)
                 info.Position = UDim2.new(0.119433202, 0, 0.111111142, 0)
                 info.Size = UDim2.new(0, 435, 0, 18)
                 info.Font = Enum.Font.SourceSans
-                info.Text = "Username: " .. Name .. " | UserId: " .. UserId .. " | MembeShipType: " .. MemberShipType
+                info.Text = "Username: " .. Name .. " | UserId: " .. UserId .. " | MembershipType: " .. MemberShipType
                 info.TextColor3 = TeamColor
                 info.TextSize = 15.000
                 info.TextStrokeTransparency = 0.000
