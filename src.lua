@@ -736,7 +736,15 @@ function Library:CreateWindow(title, color)
                 textbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
                 textbox.BorderColor3 = Color3.fromRGB(8, 8, 8)
                 textbox.Position = UDim2.new(0, 0, 0, 22)
-                textbox.Size = UDim2.new(0, 234, 0, 15)
+                textbox.Size = UDim2.new(0, 234, 0, 20)
+                textbox.ZIndex = 0
+                textbox.Font = Enum.Font.SourceSans
+                textbox.Text = textvalue
+                textbox.PlaceholderText = text
+                textbox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
+                textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+                textbox.TextSize = 14.000
+				
                 
                 UIGradient_tb.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
                 UIGradient_tb.Rotation = 90
