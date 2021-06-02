@@ -704,7 +704,44 @@ function Library:CreateWindow(title, color)
                 return SliderTypes
             end
             
-            function GroupTypes:CreateTextBox(name, text, textvalue, callback)
+            function GroupTypes:CreateTextBox(name, text, textvalue, callback)	
+		name = name or "New Textbox"
+		text = text or ""
+		textvalue = text or ""
+                callback = callback or function(s) print(s) end
+				
+                -- Instances
+                local titlex = Instance.new("TextLabel")
+                local textbox = Instance.new("TextBox")
+                local UIGradient_tb = Instance.new("UIGradient")
+
+                -- Properties
+                titlex.Name = "title"
+                titlex.Parent = container_2
+                titlex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                titlex.BackgroundTransparency = 1.000
+                titlex.Position = UDim2.new(0, 10, 0, 51)
+                titlex.Size = UDim2.new(0, 234, 0, 37)
+                titlex.ZIndex = 0
+                titlex.Font = Enum.Font.SourceSans
+                titlex.Text = name
+                titlex.TextColor3 = Color3.fromRGB(255, 255, 255)
+                titlex.TextSize = 15.000
+                titlex.TextStrokeTransparency = 0.000
+                titlex.TextXAlignment = Enum.TextXAlignment.Left
+                titlex.TextYAlignment = Enum.TextYAlignment.Top
+
+                textbox.Name = "TextBox"
+                textbox.Parent = titlex
+                textbox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+                textbox.BorderColor3 = Color3.fromRGB(8, 8, 8)
+                textbox.Position = UDim2.new(0, 0, 0, 22)
+                textbox.Size = UDim2.new(0, 234, 0, 15)
+                
+                UIGradient_tb.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
+                UIGradient_tb.Rotation = 90
+                UIGradient_tb.Parent = textbox
+                --[[
                 name = name or "Textbox"
                 text = text or ""
                 callback = callback or function(o) print(o) end
@@ -745,24 +782,24 @@ function Library:CreateWindow(title, color)
                 titlex.TextStrokeTransparency = 0.000
                 titlex.TextXAlignment = Enum.TextXAlignment.Left
 		titlex.TextYAlignment = Enum.TextYAlignment.Top
-				
+				]]--
                 -- Textbox code
-                Textbox.InputBegan:connect(function(input)
+                textbox.InputBegan:connect(function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
-						Textbox:CaptureFocus()
+						textbox:CaptureFocus()
 					end
 				end)
-                Textbox:GetPropertyChangedSignal("Text"):connect(function(x)
-                    textvalue = Textbox.Text
-					return callback(Textbox.Text, false, x)
+                textbox:GetPropertyChangedSignal("Text"):connect(function(x)
+                    textvalue = textbox.Text
+					return callback(textbox.Text, false, x)
 				end)
-               Textbox.FocusLost:connect(function()
-                    textvalue = Textbox.Text
-					return callback(Textbox.Text, true)
+               textbox.FocusLost:connect(function()
+                    textvalue = twxtbox.Text
+					return callback(textbox.Text, true)
 				end)
                 userinputservice.InputBegan:connect(function(input)
-					if input.KeyCode == Enum.KeyCode.Escape and Textbox:IsFocused() then
-						Textbox:ReleaseFocus()
+					if input.KeyCode == Enum.KeyCode.Escape and textbox:IsFocused() then
+						textbox:ReleaseFocus()
 					end
                         end)
                 end
