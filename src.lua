@@ -704,16 +704,19 @@ function Library:CreateWindow(title, color)
                 return SliderTypes
             end
             
-            function GroupTypes:CreateTextBox(name, text, textvalue, callback)	
+            function GroupTypes:CreateTextBox(name, placementtext, textvalue, callback)	
 		name = name or "New Textbox"
-		text = text or ""
-		textvalue = text or ""
-                callback = callback or function(s) print(s) end
+		placementtext = placementtext or ""
+		textvalue = textvalue or ""
+                callback = callback or function(t) print(t) end
 				
                 -- Instances
                 local titlex = Instance.new("TextLabel")
                 local textbox = Instance.new("TextBox")
                 local UIGradient_tb = Instance.new("UIGradient")
+				
+		-- Main
+		local TextboxTypes = {}
 
                 -- Properties
                 titlex.Name = "title"
@@ -740,7 +743,7 @@ function Library:CreateWindow(title, color)
                 textbox.ZIndex = 0
                 textbox.Font = Enum.Font.SourceSans
                 textbox.Text = textvalue
-                textbox.PlaceholderText = text
+                textbox.PlaceholderText = placementtext
                 textbox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
                 textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
                 textbox.TextSize = 14.000
@@ -749,48 +752,7 @@ function Library:CreateWindow(title, color)
                 UIGradient_tb.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
                 UIGradient_tb.Rotation = 90
                 UIGradient_tb.Parent = textbox
-                --[[
-                name = name or "Textbox"
-                text = text or ""
-                callback = callback or function(o) print(o) end
-                 -- Textbox Instances
-                local Textbox = Instance.new("TextBox")
-                local UIGradient_17 = Instance.new("UIGradient")
-                local titlex = Instance.new("TextLabel")
-
-                -- Textbox Properties
-                Textbox.Name = "TextBox"
-                Textbox.Parent = container_2
-                Textbox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-                Textbox.BorderColor3 = Color3.fromRGB(8, 8, 8)
-                Textbox.Position = UDim2.new(0.0399999991, 0, 0.273542613, 0)
-                Textbox.Size = UDim2.new(0, 234, 0, 20)
-                Textbox.ZIndex = 0
-                Textbox.Font = Enum.Font.SourceSans
-                Textbox.Text = textvalue
-                Textbox.PlaceholderText = text
-                Textbox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
-                Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
-                Textbox.TextSize = 14.000
                 
-                UIGradient_17.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(167, 167, 167))}
-                UIGradient_17.Rotation = 90
-                UIGradient_17.Parent = Button
-                
-                titlex.Name = "title"
-                titlex.Parent = Textbox
-                titlex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                titlex.BackgroundTransparency = 1.000
-                titlex.Position =  UDim2.new(0, 10, 0, 10)
-                titlex.Size = UDim2.new(0, 234, 0, 42)
-                titlex.Font = Enum.Font.SourceSans
-                titlex.Text = name
-                titlex.TextColor3 = Color3.fromRGB(255, 255, 255)
-                titlex.TextSize = 15.000
-                titlex.TextStrokeTransparency = 0.000
-                titlex.TextXAlignment = Enum.TextXAlignment.Left
-		titlex.TextYAlignment = Enum.TextYAlignment.Top
-				]]--
                 -- Textbox code
                 textbox.InputBegan:connect(function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -798,18 +760,31 @@ function Library:CreateWindow(title, color)
 					end
 				end)
                 textbox:GetPropertyChangedSignal("Text"):connect(function(x)
-                    textvalue = textbox.Text
+                    			textvalue = textbox.Text
 					return callback(textbox.Text, false, x)
 				end)
                textbox.FocusLost:connect(function()
-                    textvalue = textbox.Text
+                    			textvalue = textbox.Text
 					return callback(textbox.Text, true)
 				end)
                 userinputservice.InputBegan:connect(function(input)
 					if input.KeyCode == Enum.KeyCode.Escape and textbox:IsFocused() then
 						textbox:ReleaseFocus()
 					end
-                        end)
+                end)
+				
+				function TextboxTypes:GetText()
+					return textvalue
+				end
+				
+				function TextboxTypes:SetText(new)
+				    new = new or ""
+					textvalue = new
+					textbox.Text = tostring(new)
+					callback(new)
+				end
+				 
+				return TextboxTypes
                 end
                 
 
